@@ -5,7 +5,7 @@ class AirPort {
   }
 
   landPlane(plane){
-    if (this.dock.length === this.maxCap){
+    if (this.dock.length === this.maxCap) {
       return "This airport is full. Cannot land."
     }
     else {
@@ -13,7 +13,15 @@ class AirPort {
     }
   }
 
-  takeOff(plane) {
-    return this.dock.splice( this.dock.indexOf(plane), 1 );
-  }
-}
+  takeOff(plane, weather) {
+    var isStormy
+    this.isStormy = weather
+
+    if (this.isStormy == false){
+       return this.dock.splice( this.dock.indexOf(plane), 1 );
+    }else {
+      return "Take-off denied: stormy weather.";
+    }
+  };
+
+};

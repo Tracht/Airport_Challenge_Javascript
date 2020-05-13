@@ -55,12 +55,9 @@ airport             | Constructed:(maxCap = 10)
                         - docked.delete(plane)
                         dock.splice( dock.indexOf('plane2'), 1 );
 
-                      .stormy?
+                      .isStormy
                           - this.weather.weather_check === 'stormy'
                                   - sunny === stormy
-                          Weather.weatherChecker
-                            => Sunny
-                            => Stormy
 
                         Draft testing for weather mock
                             var mock_weather, weather_checker = null;
