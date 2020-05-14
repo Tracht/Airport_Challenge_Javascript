@@ -31,24 +31,34 @@ describe("An Airport", function() {
   });
 
   describe("When it is stormy", function() {
-    var isStormy
-      beforeEach(function() {
-        isStormy = jasmine.createSpy('isStormy');
-        isStormy = function() {
-            return true;
-        };
-      });
 
     it("plane remains in dock", function() {
       airPort.landPlane(plane)
-      airPort.takeOff(plane, isStormy)
+      airPort.takeOff(plane, "isStormy")
+      // expect(airPort.dock.length).toBe(1)
       expect(airPort.dock).toContain(plane);
-    });
+    })
 
     it("returns message denying take-off", function() {
       airPort.landPlane(plane)
-      airPort.takeOff(plane, isStormy)
+      airPort.takeOff(plane, "isStormy")
       expect(airPort.takeOff).toMatch("Take-off denied: stormy weather.");
+    });
+
+  });
+
+  describe("When it is NOT stormy", function() {
+
+    it("plane leaves dock", function() {
+      airPort.landPlane(plane)
+      airPort.takeOff(plane, "isSunny")
+      expect(airPort.dock).not.toContain(plane);
+    });
+
+    it("returns message allowing take-off", function() {
+      airPort.landPlane(plane)
+      airPort.takeOff(plane, "isSunny")
+      expect(airPort.takeOff).toMatch("Take-off permitted.");
     });
 
   });

@@ -14,13 +14,13 @@ class AirPort {
   }
 
   takeOff(plane, weather) {
-    var isStormy
-    this.isStormy = weather
+    var isStormy = weather
 
-    if (this.isStormy == false){
-       return this.dock.splice( this.dock.indexOf(plane), 1 );
-    }else {
+    if ( isStormy === "isStormy" ){
       return "Take-off denied: stormy weather.";
+    }else {
+      "Take-off permitted."
+      return this.dock.splice( this.dock.indexOf(plane), 1 );
     }
   };
 
